@@ -8,7 +8,7 @@ export class JogadoresController {
   constructor(private readonly jogadoresService: JogadoresService) {}
 
   @Post()
-  async criarAtulizarJogador(@Body() criarJogadorDto: CriarJogadorDto) {
+  async criarAtualizarJogador(@Body() criarJogadorDto: CriarJogadorDto) {
     await this.jogadoresService.criarAtualizarJogador(criarJogadorDto);
   }
 
