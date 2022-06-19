@@ -9,8 +9,6 @@ import { JogadoresModule } from './jogadores/jogadores.module';
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
       },
     ),
     JogadoresModule,
