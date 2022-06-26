@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Put,
-  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -21,8 +20,10 @@ export class JogadoresController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async criarJogador(@Body() criarJogadorDto: CriarJogadorDto) {
-    await this.jogadoresService.criarJogador(criarJogadorDto);
+  async criarJogador(
+    @Body() criarJogadorDto: CriarJogadorDto,
+  ): Promise<Jogador> {
+    return await this.jogadoresService.criarJogador(criarJogadorDto);
   }
 
   @Put('/:_id')
@@ -43,7 +44,7 @@ export class JogadoresController {
   async consultarJogadoresPeloId(
     @Param('_id', JogadoresValidacaoParametrosPipe) _id: string,
   ): Promise<Jogador> {
-    return this.jogadoresService.consultarJogadoresPeloId(_id);
+    return this.jogadoresService.consultarJogadorPeloId(_id);
   }
 
   @Delete('/:_id')
