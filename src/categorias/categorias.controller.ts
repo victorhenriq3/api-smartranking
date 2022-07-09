@@ -9,6 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CategoriasService } from './categorias.service';
+import { AtualizarCategoriaDto } from './dtos/atualizar-categoria.dto';
 import { CriarCategoriaDto } from './dtos/criar-categoria.dto';
 import { Categoria } from './interface/categoria.interface';
 
@@ -40,5 +41,10 @@ export class CategoriasController {
   async atualizarCategoria(
     @Body() atualizarCategoriaDto: AtualizarCategoriaDto,
     @Param('categoria') categoria: string,
-  ): Promise<void> {}
+  ): Promise<void> {
+    await this.categoriaService.atualizarCategoria(
+      categoria,
+      atualizarCategoriaDto,
+    );
+  }
 }
