@@ -78,10 +78,6 @@ export class CategoriasService {
       categoria,
     });
 
-    if (!categoriaEncontrada) {
-      throw new NotFoundException('Categoria não encontrada!');
-    }
-
     const jogadorCadastradoCategoria = await this.categoriaModel
       .find({ categoria })
       .where('jogadores')
@@ -89,6 +85,14 @@ export class CategoriasService {
       .exec();
 
     await this.jogadoresService.consultarJogadorPeloId(idJogador);
+
+    if (!categoriaEncontrada) {
+      throw new NotFoundException('Categoria não encontrada!');
+    }
+
+    if (jogadorCadastradoCategoria.length > 0) {
+      throw new BadRequestException('Jogador já cadastrado na categoria');
+    }
 
     categoriaEncontrada.jogadores.push(idJogador);
 
